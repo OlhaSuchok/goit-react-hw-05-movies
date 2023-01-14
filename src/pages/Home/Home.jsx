@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { fetchListFilms } from 'services/Api';
-// import Header from 'pages/Header/Header';
+import { fetchListPopularFilms } from 'services/Api';
 import {
   HomeTitle,
   HomeList,
   HomeListItem,
-  NavLinkStyle,
+  NavLinkPopularFilms,
 } from 'pages/Home/Home.styled';
 
 const Status = {
@@ -16,7 +15,7 @@ const Status = {
 };
 
 export default function Home() {
-  const [films, setFilms] = useState([]);
+  const [popularFilms, setFilms] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
 
@@ -26,7 +25,7 @@ export default function Home() {
       try {
         const {
           data: { results },
-        } = await fetchListFilms();
+        } = await fetchListPopularFilms();
 
         setFilms(results);
         setStatus(Status.RESOLVED);
@@ -36,17 +35,19 @@ export default function Home() {
       }
     };
     getFilms();
-  }, [status, error]);
+  }, []);
 
   return (
     <>
       <HomeTitle>TRENDING TODAY</HomeTitle>
-      {films.length > 0 && (
+      {popularFilms.length > 0 && (
         <HomeList>
-          {films.map(({ title, id }) => {
+          {popularFilms.map(({ title, id }) => {
             return (
               <HomeListItem key={id}>
-                <NavLinkStyle to={`/movies/${id}`}>{title}</NavLinkStyle>
+                <NavLinkPopularFilms to={`/movies/${id}`}>
+                  {title}
+                </NavLinkPopularFilms>
               </HomeListItem>
             );
           })}

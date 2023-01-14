@@ -1,14 +1,26 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.form`
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   width: 100%;
   max-width: 600px;
   background-color: white;
   border: 1px solid black;
   border-radius: 3px;
   overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:focus {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 `;
 
 export const Input = styled.input`
@@ -17,8 +29,6 @@ export const Input = styled.input`
   font: inherit;
   font-size: 20px;
   outline: none;
-  /* padding-left: 4px;
-  padding-right: 4px; */
   padding: 8px 14px;
   border: none;
 
@@ -45,4 +55,17 @@ export const InputButton = styled.button`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const SearchMovieList = styled.ul`
+  margin: 0;
+`;
+export const SearchMovieListItem = styled.li`
+  color: #2a2a2a;
+  font-size: 24px;
+  font-family: none;
+`;
+
+export const NavLinkSearchMovie = styled(NavLink)`
+  text-decoration: none;
 `;

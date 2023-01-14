@@ -18,6 +18,6 @@ export const HomeListItem = styled.li`
   font-family: none;
 `;
 
-export const NavLinkStyle = styled(NavLink)`
+export const NavLinkPopularFilms = styled(NavLink)`
   text-decoration: none;
 `;
