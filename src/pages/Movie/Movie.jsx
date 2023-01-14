@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +24,7 @@ export default function Movie() {
   const [searchFilms, setSearchFilms] = useState([]);
 
   const [status, setStatus] = useState(Status.IDLE);
+  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const handleSearchFilms = event => {

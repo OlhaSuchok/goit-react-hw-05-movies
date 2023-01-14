@@ -16,7 +16,9 @@ const Status = {
 
 export default function Home() {
   const [popularFilms, setFilms] = useState([]);
+  // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
+  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   useEffect(() => {
