@@ -27,10 +27,7 @@ import Reviews from '../pages/Reviews/Reviews';
 export const App = () => {
   return (
     <Box p={20}>
-      <Header />
-      <div>fkmldm</div>
       <Routes>
-        <Header />
         <Route path="/" element={<Header />}>
           <Route index element={<Home />}></Route>
           <Route path="/movies" element={<Movie />}></Route>
