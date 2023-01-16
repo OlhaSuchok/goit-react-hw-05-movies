@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { GoSearch } from 'react-icons/go';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,31 +23,34 @@ const Status = {
 export default function Movie() {
   const [query, setQuery] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
-
   const [status, setStatus] = useState(Status.IDLE);
-  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
-  const handleSearchFilms = event => {
-    setQuery(event.currentTarget.value.toLowerCase());
-    console.log(event.currentTarget.value);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('query') ?? '';
+
+  const handleChange = event => {
+    setQuery(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
+    setSearchParams({ query: query });
 
     if (query === '') {
       toast.warn("Введіть ім'я параметра у пошуку!");
       return;
     }
+  };
 
+  useEffect(() => {
     const getSearchFilms = async () => {
       setStatus(Status.PENDING);
 
       try {
         const {
           data: { results },
-        } = await fetchSearchFilms(query);
+        } = await fetchSearchFilms(search);
 
         setSearchFilms(results);
         setStatus(Status.RESOLVED);
@@ -58,32 +62,10 @@ export default function Movie() {
       }
     };
 
-    if (query.length > 0) {
+    if (search) {
       getSearchFilms();
     }
-  };
-
-  // useEffect(() => {
-  // const getSearchFilms = async () => {
-  //   setStatus(Status.PENDING);
-
-  //   try {
-  //     const {
-  //       data: { results },
-  //     } = await fetchSearchFilms(query);
-
-  //     setSearchFilms(results);
-  //     setStatus(Status.RESOLVED);
-  //   } catch (error) {
-  //     setStatus(Status.REJECTED);
-  //     setError(console.log(error));
-  //   }
-  // };
-
-  // if (query) {
-  //   getSearchFilms();
-  // }
-  // }, [query]);
+  }, [search]);
 
   return (
     <div>
@@ -94,7 +76,7 @@ export default function Movie() {
           autoFocus
           placeholder="Search movies"
           value={query}
-          onChange={handleSearchFilms}
+          onChange={handleChange}
         ></Input>
         <InputButton>
           <GoSearch size={24} />
