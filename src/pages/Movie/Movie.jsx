@@ -24,6 +24,7 @@ export default function Movie() {
   const [query, setQuery] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
+  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
