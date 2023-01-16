@@ -12,6 +12,7 @@ const Status = {
 
 export default function MovieDetails() {
   const [filmDetails, setFilmDetails] = useState([]);
+  // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
   // eslint-disable-next-line
   const [error, setError] = useState(null);
@@ -38,7 +39,7 @@ export default function MovieDetails() {
       }
     };
     getFilmDetails();
-  }, [movieId]);
+  }, [error, movieId]);
 
   const onClickHandler = () => {
     navigate(location?.state.from.pathname ?? '/');

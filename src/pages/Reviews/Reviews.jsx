@@ -11,6 +11,7 @@ const Status = {
 
 export default function Reviews() {
   const [reviews, setReview] = useState([]);
+  // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
   // eslint-disable-next-line
   const [error, setError] = useState(null);
@@ -33,7 +34,7 @@ export default function Reviews() {
       }
     };
     getFilmDetails();
-  }, [movieId]);
+  }, [error, movieId]);
 
   return (
     <div>

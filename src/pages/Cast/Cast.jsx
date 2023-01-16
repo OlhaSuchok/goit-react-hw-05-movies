@@ -11,6 +11,7 @@ const Status = {
 
 export default function Cast() {
   const [cast, setCast] = useState([]);
+  // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
   // eslint-disable-next-line
   const [error, setError] = useState(null);
@@ -34,7 +35,7 @@ export default function Cast() {
       }
     };
     getFilmDetails();
-  }, [movieId]);
+  }, [error, movieId]);
 
   return (
     <div>
