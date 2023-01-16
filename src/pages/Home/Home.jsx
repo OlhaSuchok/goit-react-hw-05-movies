@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { fetchListPopularFilms } from 'services/Api';
 import {
   HomeTitle,
@@ -20,6 +21,8 @@ export default function Home() {
   const [status, setStatus] = useState(Status.IDLE);
   // eslint-disable-next-line
   const [error, setError] = useState(null);
+
+  const location = useLocation();
 
   useEffect(() => {
     const getFilms = async () => {
@@ -47,7 +50,10 @@ export default function Home() {
           {popularFilms.map(({ title, id }) => {
             return (
               <HomeListItem key={id}>
-                <NavLinkPopularFilms to={`/movies/${id}`}>
+                <NavLinkPopularFilms
+                  to={`/movies/${id}`}
+                  state={{ from: location }}
+                >
                   {title}
                 </NavLinkPopularFilms>
               </HomeListItem>

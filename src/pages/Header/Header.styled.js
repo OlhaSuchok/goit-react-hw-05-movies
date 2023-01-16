@@ -44,6 +44,14 @@ export const NavLinkButton = styled.button`
       23px 0 20px -23px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.1);
     border-color: transparent;
   }
+
+  &.active {
+    background-color: #ffffe0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+      -23px 0 20px -23px rgba(0, 0, 0, 0.6),
+      23px 0 20px -23px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+  }
 `;
 
 export const NavLinkItem = styled(NavLink)`

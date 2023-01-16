@@ -13,12 +13,15 @@ export const App = () => {
     <Box p={20}>
       <Routes>
         <Route path="/" element={<Header />}>
-          <Route index element={<Home />}></Route>
-          <Route path="/movies" element={<Movie />}></Route>
-          <Route path="/movies/:movieId" elements={<MovieDetails />}></Route>
-          <Route path="/movies/:movieId/cast" elements={<Cast />}></Route>
-          <Route path="/movies/:movieId/reviews" elements={<Reviews />}></Route>
-          <Route path="*" elements={<NotFound />}></Route>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movie />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="/movies/:movieId/cast" elements={<Cast />} />
+          <Route path="/movies/:movieId/reviews" elements={<Reviews />} />
+          <Route path="*" elements={<NotFound />} />
         </Route>
       </Routes>
     </Box>
