@@ -36,7 +36,7 @@ export default function Movie() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    setSearchParams({ query: query });
+    setSearchParams(query !== '' ? { query: query } : {});
 
     if (query === '') {
       toast.warn("Введіть ім'я параметра у пошуку!");
