@@ -6,6 +6,7 @@ import {
   HomeList,
   HomeListItem,
   NavLinkPopularFilms,
+  HomeWrapper,
 } from 'pages/Home/Home.styled';
 
 const Status = {
@@ -43,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <HomeWrapper>
       <HomeTitle>TRENDING TODAY</HomeTitle>
       {popularFilms.length > 0 && (
         <HomeList>
@@ -61,6 +62,6 @@ export default function Home() {
           })}
         </HomeList>
       )}
-    </>
+    </HomeWrapper>
   );
 }

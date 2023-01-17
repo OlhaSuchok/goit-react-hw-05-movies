@@ -1,7 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useParams, NavLink, Outlet } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
+// import { MdArrowBackIosNew } from 'react-icons/md';
+import { HiArrowLeft } from 'react-icons/hi';
 import { fetchFilmById } from 'services/Api';
+import {
+  GoBackButton,
+  MovieDetailsTitle,
+  MovieImg,
+  DetailName,
+  DetailValue,
+  MovieTextDetails,
+  MovieAdditionalItile,
+  NavLinkItem,
+  MovieTextDetailsWrapper,
+  MovieImageWrapper,
+  MovieAdditionalWrapper,
+  MovieDetailsWrapper,
+} from './MovieDetails.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -49,33 +65,42 @@ export default function MovieDetails() {
   const moviegGenres = genres?.map(elem => ' ' + elem.name).join();
 
   return (
-    <div>
-      <button type="button" onClick={onClickHandler}>
-        Go Back
-      </button>
-      <h1>{title}</h1>
-      <img src={imageUrl + poster_path} alt={title}></img>
-      <p>User score: {vote_average}</p>
-      <p>Overview: {overview}</p>
-      {genres && <p>Gernes: {moviegGenres} </p>}
-
-      {/* {genres &&
-        genres.map(({ name }) => {
-          return <p>Gernes: {name} </p>;
-        })} */}
-
-      <div>
-        <h2>Additional information</h2>
+    <MovieDetailsWrapper>
+      <GoBackButton type="button" onClick={onClickHandler}>
+        <HiArrowLeft />
+      </GoBackButton>
+      <MovieImageWrapper>
+        <MovieDetailsTitle>{title}</MovieDetailsTitle>
+        <MovieImg src={imageUrl + poster_path} alt={title}></MovieImg>
+      </MovieImageWrapper>
+      <MovieTextDetailsWrapper>
+        <MovieTextDetails>
+          <DetailName>User score:</DetailName>{' '}
+          <DetailValue>{vote_average}</DetailValue>
+        </MovieTextDetails>
+        <MovieTextDetails>
+          <DetailName>Overview:</DetailName>{' '}
+          <DetailValue>{overview}</DetailValue>
+        </MovieTextDetails>
+        {genres && (
+          <MovieTextDetails>
+            <DetailName>Gernes:</DetailName>{' '}
+            <DetailValue>{moviegGenres}</DetailValue>
+          </MovieTextDetails>
+        )}
+      </MovieTextDetailsWrapper>
+      <MovieAdditionalWrapper>
+        <MovieAdditionalItile>Additional information</MovieAdditionalItile>
         <ul>
-          <li>
+          <NavLinkItem>
             <NavLink to="cast">Cast</NavLink>
-          </li>
-          <li>
+          </NavLinkItem>
+          <NavLinkItem>
             <NavLink to="reviews">Review</NavLink>
-          </li>
+          </NavLinkItem>
         </ul>
-      </div>
+      </MovieAdditionalWrapper>
       <Outlet />
-    </div>
+    </MovieDetailsWrapper>
   );
 }

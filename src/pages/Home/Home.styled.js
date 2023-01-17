@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const HomeWrapper = styled.div`
+  padding: 20px;
+  background-color: #f7ffee;
+  border-radius: 1px solid #2a2a2a;
+
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -4px,
+    rgb(0 0 0 / 14%) 0px 4px 5px 0px;
+`;
+
 export const HomeTitle = styled.h1`
   margin-top: 0;
   margin-bottom: 20px;

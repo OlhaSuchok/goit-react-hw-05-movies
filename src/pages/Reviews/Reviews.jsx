@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'services/Api';
+import {
+  ReviewsList,
+  ReviewsItem,
+  ReviewsText,
+  ReviewsAuthor,
+  ReviewsValue,
+  ReviewsContent,
+} from './Reviews.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -39,16 +47,19 @@ export default function Reviews() {
   return (
     <div>
       {reviews && (
-        <ul>
+        <ReviewsList>
           {reviews.map(({ author, id, content }) => {
             return (
-              <li key={id}>
-                <p>AUTHOR: {author}</p>
-                <p>{content}</p>
-              </li>
+              <ReviewsItem key={id}>
+                <ReviewsText>
+                  <ReviewsAuthor>Author: </ReviewsAuthor>
+                  <ReviewsValue>{author}</ReviewsValue>
+                </ReviewsText>
+                <ReviewsContent>{content}</ReviewsContent>
+              </ReviewsItem>
             );
           })}
-        </ul>
+        </ReviewsList>
       )}
       {reviews.length === 0 && <p>We don't have ant reviews for this movie.</p>}
     </div>

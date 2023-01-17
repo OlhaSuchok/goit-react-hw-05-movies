@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCasts } from 'services/Api';
+import {
+  CastList,
+  CastText,
+  CastValue,
+  CastName,
+  CastImg,
+  CastTextWrapper,
+  CastItem,
+} from './Cast.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -40,19 +49,27 @@ export default function Cast() {
   return (
     <div>
       {cast && (
-        <ul>
+        <CastList>
           {cast.map(({ profile_path, id, character, name, original_name }) => {
             return (
-              <li key={id}>
-                <img src={imageUrl + profile_path} alt={name}></img>
-                <p>Name: {original_name}</p>
-                <p>Сharacter: {character}</p>
-              </li>
+              <CastItem key={id}>
+                <CastImg src={imageUrl + profile_path} alt={name}></CastImg>
+                <CastTextWrapper>
+                  <CastText>
+                    <CastName>Name:</CastName>{' '}
+                    <CastValue>{original_name}</CastValue>
+                  </CastText>
+                  <CastText>
+                    <CastName>Сharacter:</CastName>{' '}
+                    <CastValue>{character}</CastValue>
+                  </CastText>
+                </CastTextWrapper>
+              </CastItem>
             );
           })}
-        </ul>
+        </CastList>
       )}
-      {!cast && <p>We don't have ant casts for this movie.</p>}
+      {cast.length === 0 && <p>We don't have ant casts for this movie.</p>}
     </div>
   );
 }
