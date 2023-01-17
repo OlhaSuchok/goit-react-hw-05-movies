@@ -42,11 +42,11 @@ export const CastValue = styled.span`
   font-weight: 400;
 `;
 
-export const FailureText = styled.p`
+export const AccentText = styled.p`
   text-align: center;
   color: #2a2a2a;
   font-family: none;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
 
   margin-top: 40px;

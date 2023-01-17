@@ -44,12 +44,11 @@ export const GoBackButton = styled.button`
 
 export const GoBackButtonWrapper = styled.div`
   display: flex;
-  /* justify-content: flex-start; */
   align-items: self-end;
 `;
 
 export const MovieImg = styled.img`
-  max-width: 300px;
+  max-width: 400px;
   margin-bottom: 20px;
 `;
 

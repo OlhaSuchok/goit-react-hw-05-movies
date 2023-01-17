@@ -37,7 +37,7 @@ export default function Home() {
         setStatus(Status.RESOLVED);
       } catch (error) {
         setStatus(Status.REJECTED);
-        setError(error);
+        setError(console.log(error));
       }
     };
     getFilms();

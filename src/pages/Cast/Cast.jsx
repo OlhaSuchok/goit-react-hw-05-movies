@@ -9,7 +9,7 @@ import {
   CastImg,
   CastTextWrapper,
   CastItem,
-  FailureText,
+  AccentText,
 } from './Cast.styled';
 
 const Status = {
@@ -23,7 +23,6 @@ export default function Cast() {
   const [cast, setCast] = useState([]);
   // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
-  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
@@ -59,11 +58,11 @@ export default function Cast() {
                 )}
                 <CastTextWrapper>
                   <CastText>
-                    <CastName>Name:</CastName>
+                    <CastName>Name: </CastName>
                     <CastValue>{original_name}</CastValue>
                   </CastText>
                   <CastText>
-                    <CastName>Сharacter:</CastName>
+                    <CastName>Сharacter: </CastName>
                     <CastValue>{character}</CastValue>
                   </CastText>
                 </CastTextWrapper>
@@ -72,9 +71,11 @@ export default function Cast() {
           })}
         </CastList>
       )}
-      {cast.length === 0 && (
-        <FailureText>We don't have any casts for this movie.</FailureText>
-      )}
+      {cast.length === 0 &&
+        status !== Status.IDLE &&
+        status !== Status.PENDING && (
+          <AccentText>We don't have any casts for this movie.</AccentText>
+        )}
     </div>
   );
 }

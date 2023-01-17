@@ -32,7 +32,6 @@ export const fetchCasts = async id => {
   const url = `${BASE_URL}3${ENDPOINT}/${id}/credits?api_key=${API_KEY}&language=en-US`;
 
   const data = await axios.get(url);
-  console.log('fetchCacts:', data.data.cast);
   return data;
 };
 
@@ -41,6 +40,5 @@ export const fetchReviews = async id => {
   const url = `${BASE_URL}3${ENDPOINT}/${id}/reviews?api_key=${API_KEY}&language=en-US`;
 
   const data = await axios.get(url);
-  console.log('fetchReviews:', data.data.results);
   return data;
 };

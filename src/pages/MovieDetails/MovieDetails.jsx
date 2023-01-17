@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
-// import { MdArrowBackIosNew } from 'react-icons/md';
 import { HiArrowLeft } from 'react-icons/hi';
 import { fetchFilmById } from 'services/Api';
+import Loader from 'components/Loader/Loader';
 import {
   GoBackButton,
   MovieDetailsTitle,
@@ -32,7 +32,6 @@ export default function MovieDetails() {
   const [filmDetails, setFilmDetails] = useState([]);
   // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
-  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
@@ -40,8 +39,6 @@ export default function MovieDetails() {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  console.log(location);
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -110,7 +107,9 @@ export default function MovieDetails() {
           </NavLinkItem>
         </ul>
       </MovieAdditionalWrapper>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </MovieDetailsWrapper>
   );
 }

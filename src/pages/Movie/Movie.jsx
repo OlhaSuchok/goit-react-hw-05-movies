@@ -4,6 +4,7 @@ import { GoSearch } from 'react-icons/go';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchSearchFilms } from 'services/Api';
+import { AccentText } from 'pages/Cast/Cast.styled';
 import {
   InputWrapper,
   Input,
@@ -24,7 +25,6 @@ export default function Movie() {
   const [query, setQuery] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
-  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,7 +54,6 @@ export default function Movie() {
         const {
           data: { results },
         } = await fetchSearchFilms(search);
-
         setSearchFilms(results);
         setStatus(Status.RESOLVED);
       } catch (error) {
@@ -99,13 +98,18 @@ export default function Movie() {
           })}
         </SearchMovieList>
       )}
-      {/* {searchFilms.length === 0 && (
-        <p>Нажаль, фільмів за запитом {query} не знайдено.</p>
-      )} */}
-      {/* {status === Status.PENDING && status !== Status.PENDING && (
-        <p>Нажаль, фільмів за запитом {query} не знайдено.</p>
-      )} */}
-      {status === Status.IDLE && !query && <p>Введіть значення для пошуку.</p>}
+      {searchFilms.length === 0 &&
+        status !== Status.IDLE &&
+        status !== Status.PENDING && (
+          <AccentText>
+            Unfortunately, no movies were found for your request. Enter the
+            movie title again.
+          </AccentText>
+        )}
+      {status === Status.IDLE && !query && (
+        <AccentText>Enter the name of the movie to search.</AccentText>
+      )}
+      {status === Status.REJECTED && <AccentText>{error.message}.</AccentText>}
     </div>
   );
 }

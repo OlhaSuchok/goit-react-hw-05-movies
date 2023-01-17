@@ -9,7 +9,7 @@ import {
   ReviewsContent,
 } from './Reviews.styled';
 
-import { FailureText } from 'pages/Cast/Cast.styled';
+import { AccentText } from 'pages/Cast/Cast.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -22,7 +22,6 @@ export default function Reviews() {
   const [reviews, setReview] = useState([]);
   // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
-  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
@@ -62,9 +61,11 @@ export default function Reviews() {
           })}
         </ReviewsList>
       )}
-      {reviews.length === 0 && (
-        <FailureText>We don't have any reviews for this movie.</FailureText>
-      )}
+      {reviews.length === 0 &&
+        status !== Status.IDLE &&
+        status !== Status.PENDING && (
+          <AccentText>We don't have any reviews for this movie.</AccentText>
+        )}
     </div>
   );
 }
