@@ -6,7 +6,6 @@ import Movie from '../pages/Movie/Movie';
 import MovieDetails from '../pages/MovieDetails/MovieDetails';
 import Cast from '../pages/Cast/Cast';
 import Reviews from '../pages/Reviews/Reviews';
-import NotFound from 'pages/NotFound/NotFound';
 
 export const App = () => {
   return (

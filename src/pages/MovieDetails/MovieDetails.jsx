@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, NavLink, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 // import { MdArrowBackIosNew } from 'react-icons/md';
 import { HiArrowLeft } from 'react-icons/hi';
