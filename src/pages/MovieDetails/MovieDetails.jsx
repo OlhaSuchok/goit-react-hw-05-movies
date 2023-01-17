@@ -13,10 +13,12 @@ import {
   MovieTextDetails,
   MovieAdditionalItile,
   NavLinkItem,
+  NavLinks,
   MovieTextDetailsWrapper,
   MovieImageWrapper,
   MovieAdditionalWrapper,
   MovieDetailsWrapper,
+  GoBackButtonWrapper,
 } from './MovieDetails.styled';
 
 const Status = {
@@ -58,7 +60,7 @@ export default function MovieDetails() {
   }, [error, movieId]);
 
   const onClickHandler = () => {
-    navigate(location?.state.from.pathname ?? '/');
+    navigate(location.state?.from ?? '/');
   };
 
   const { poster_path, title, vote_average, overview, genres } = filmDetails;
@@ -66,25 +68,29 @@ export default function MovieDetails() {
 
   return (
     <MovieDetailsWrapper>
-      <GoBackButton type="button" onClick={onClickHandler}>
-        <HiArrowLeft />
-      </GoBackButton>
       <MovieImageWrapper>
-        <MovieDetailsTitle>{title}</MovieDetailsTitle>
-        <MovieImg src={imageUrl + poster_path} alt={title}></MovieImg>
+        <GoBackButtonWrapper>
+          <GoBackButton type="button" onClick={onClickHandler}>
+            <HiArrowLeft />
+          </GoBackButton>
+          <MovieDetailsTitle>{title}</MovieDetailsTitle>
+        </GoBackButtonWrapper>
+        {poster_path && (
+          <MovieImg src={imageUrl + poster_path} alt={title}></MovieImg>
+        )}
       </MovieImageWrapper>
       <MovieTextDetailsWrapper>
         <MovieTextDetails>
-          <DetailName>User score:</DetailName>{' '}
+          <DetailName>User score: </DetailName>
           <DetailValue>{vote_average}</DetailValue>
         </MovieTextDetails>
         <MovieTextDetails>
-          <DetailName>Overview:</DetailName>{' '}
+          <DetailName>Overview: </DetailName>
           <DetailValue>{overview}</DetailValue>
         </MovieTextDetails>
         {genres && (
           <MovieTextDetails>
-            <DetailName>Gernes:</DetailName>{' '}
+            <DetailName>Gernes: </DetailName>
             <DetailValue>{moviegGenres}</DetailValue>
           </MovieTextDetails>
         )}
@@ -93,10 +99,14 @@ export default function MovieDetails() {
         <MovieAdditionalItile>Additional information</MovieAdditionalItile>
         <ul>
           <NavLinkItem>
-            <NavLink to="cast">Cast</NavLink>
+            <NavLinks to="cast" state={{ from: location.state.from }}>
+              Cast
+            </NavLinks>
           </NavLinkItem>
           <NavLinkItem>
-            <NavLink to="reviews">Review</NavLink>
+            <NavLinks to="reviews" state={{ from: location.state.from }}>
+              Review
+            </NavLinks>
           </NavLinkItem>
         </ul>
       </MovieAdditionalWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const ReviewsList = styled.ul`
   list-style: none;
@@ -7,14 +7,14 @@ export const ReviewsList = styled.ul`
 export const ReviewsItem = styled.li`
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   border-radius: 1px solid #2a2a2a;
 
   border-radius: 3px;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -4px,
     rgb(0 0 0 / 14%) 0px 4px 5px 0px;
 `;
-export const ReviewsText = styled.p``;
+
 export const ReviewsAuthor = styled.span`
   color: #2a2a2a;
   font-family: none;

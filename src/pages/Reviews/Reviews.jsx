@@ -4,11 +4,12 @@ import { fetchReviews } from 'services/Api';
 import {
   ReviewsList,
   ReviewsItem,
-  ReviewsText,
   ReviewsAuthor,
   ReviewsValue,
   ReviewsContent,
 } from './Reviews.styled';
+
+import { FailureText } from 'pages/Cast/Cast.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -51,17 +52,19 @@ export default function Reviews() {
           {reviews.map(({ author, id, content }) => {
             return (
               <ReviewsItem key={id}>
-                <ReviewsText>
+                <p>
                   <ReviewsAuthor>Author: </ReviewsAuthor>
                   <ReviewsValue>{author}</ReviewsValue>
-                </ReviewsText>
+                </p>
                 <ReviewsContent>{content}</ReviewsContent>
               </ReviewsItem>
             );
           })}
         </ReviewsList>
       )}
-      {reviews.length === 0 && <p>We don't have ant reviews for this movie.</p>}
+      {reviews.length === 0 && (
+        <FailureText>We don't have any reviews for this movie.</FailureText>
+      )}
     </div>
   );
 }

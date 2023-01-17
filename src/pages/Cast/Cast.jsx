@@ -9,6 +9,7 @@ import {
   CastImg,
   CastTextWrapper,
   CastItem,
+  FailureText,
 } from './Cast.styled';
 
 const Status = {
@@ -53,14 +54,16 @@ export default function Cast() {
           {cast.map(({ profile_path, id, character, name, original_name }) => {
             return (
               <CastItem key={id}>
-                <CastImg src={imageUrl + profile_path} alt={name}></CastImg>
+                {profile_path && (
+                  <CastImg src={imageUrl + profile_path} alt={name}></CastImg>
+                )}
                 <CastTextWrapper>
                   <CastText>
-                    <CastName>Name:</CastName>{' '}
+                    <CastName>Name:</CastName>
                     <CastValue>{original_name}</CastValue>
                   </CastText>
                   <CastText>
-                    <CastName>Сharacter:</CastName>{' '}
+                    <CastName>Сharacter:</CastName>
                     <CastValue>{character}</CastValue>
                   </CastText>
                 </CastTextWrapper>
@@ -69,7 +72,9 @@ export default function Cast() {
           })}
         </CastList>
       )}
-      {cast.length === 0 && <p>We don't have ant casts for this movie.</p>}
+      {cast.length === 0 && (
+        <FailureText>We don't have any casts for this movie.</FailureText>
+      )}
     </div>
   );
 }

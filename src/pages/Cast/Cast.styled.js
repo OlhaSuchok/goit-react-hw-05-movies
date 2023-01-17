@@ -1,18 +1,16 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const CastList = styled.ul`
   list-style: none;
   padding-left: 0;
 `;
 
-export const CastTextWrapper = styled.div`
-  /* margin-bottom: 20px; */
-`;
+export const CastTextWrapper = styled.div``;
 
 export const CastItem = styled.li`
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   border-radius: 1px solid #2a2a2a;
 
   border-radius: 3px;
@@ -42,4 +40,14 @@ export const CastValue = styled.span`
   font-family: none;
   font-size: 24px;
   font-weight: 400;
+`;
+
+export const FailureText = styled.p`
+  text-align: center;
+  color: #2a2a2a;
+  font-family: none;
+  font-size: 28px;
+  font-weight: 500;
+
+  margin-top: 40px;
 `;

@@ -9,6 +9,8 @@ export const theme = Object.freeze({
     pink: '#DDA0DD',
     red: '#FF0000',
     blue: '#4682B4',
+    backgroundHeader: '#ffefd5',
+    backgroundSection: '#FFFAF0',
   },
 
   fontSizes: {

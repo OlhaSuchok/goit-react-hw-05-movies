@@ -1,11 +1,14 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const MovieDetailsTitle = styled.h1`
   margin-top: 0;
   margin-bottom: 8px;
+  margin-left: 16px;
   color: #2a2a2a;
   font-size: 34px;
   font-family: none;
+  text-align: center;
 `;
 
 export const GoBackButton = styled.button`
@@ -21,7 +24,8 @@ export const GoBackButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
 
-  color: #8b4513;
+  color: white;
+  background-color: #b0c4de;
   text-decoration: none;
   font-size: medium;
   font-family: system-ui;
@@ -30,13 +34,35 @@ export const GoBackButton = styled.button`
 
   &:hover,
   focus {
-    background-color: #ffffe0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+      -23px 0 20px -23px rgba(0, 0, 0, 0.6),
+      23px 0 20px -23px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+`;
+
+export const GoBackButtonWrapper = styled.div`
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: self-end;
 `;
 
 export const MovieImg = styled.img`
   max-width: 300px;
   margin-bottom: 20px;
+`;
+
+export const NavLinks = styled(NavLink)`
+  &:hover,
+  focus {
+    color: #8b4513;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.active {
+    color: #8b4513;
+  }
 `;
 
 export const DetailName = styled.span`
@@ -82,9 +108,8 @@ export const NavLinkItem = styled.li`
 
 export const MovieImageWrapper = styled.div`
   padding: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   margin-bottom: 20px;
-  /* border-radius: 2px solid red; */
 
   border-radius: 3px;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -4px,
@@ -93,7 +118,7 @@ export const MovieImageWrapper = styled.div`
 
 export const MovieTextDetailsWrapper = styled.div`
   padding: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   margin-bottom: 20px;
   border-radius: 1px solid #2a2a2a;
 
@@ -104,7 +129,7 @@ export const MovieTextDetailsWrapper = styled.div`
 
 export const MovieAdditionalWrapper = styled.div`
   padding: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   border-radius: 1px solid #2a2a2a;
 
   border-radius: 3px;
@@ -112,6 +137,4 @@ export const MovieAdditionalWrapper = styled.div`
     rgb(0 0 0 / 14%) 0px 4px 5px 0px;
 `;
 
-export const MovieDetailsWrapper = styled.div`
-  /* background-color: #f7ffee; */
-`;
+export const MovieDetailsWrapper = styled.div``;

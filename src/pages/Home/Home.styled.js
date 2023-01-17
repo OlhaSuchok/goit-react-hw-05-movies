@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const HomeWrapper = styled.div`
   padding: 20px;
-  background-color: #f7ffee;
+  background-color: ${props => props.theme.colors.backgroundSection};
   border-radius: 1px solid #2a2a2a;
 
   border-radius: 3px;
@@ -30,4 +30,7 @@ export const HomeListItem = styled.li`
 
 export const NavLinkPopularFilms = styled(NavLink)`
   text-decoration: none;
+  &.active {
+    color: #8b4513;
+  }
 `;

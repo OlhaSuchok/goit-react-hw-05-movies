@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { GoSearch } from 'react-icons/go';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,6 +30,8 @@ export default function Movie() {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('query') ?? '';
 
+  const location = useLocation();
+
   const handleChange = event => {
     setQuery(event.target.value);
   };
@@ -58,8 +60,6 @@ export default function Movie() {
       } catch (error) {
         setStatus(Status.REJECTED);
         setError(console.log(error));
-      } finally {
-        setQuery('');
       }
     };
 
@@ -88,7 +88,10 @@ export default function Movie() {
           {searchFilms.map(({ title, id }) => {
             return (
               <SearchMovieListItem key={id}>
-                <NavLinkSearchMovie to={`/movies/${id}`}>
+                <NavLinkSearchMovie
+                  to={`/movies/${id}`}
+                  state={{ from: location }}
+                >
                   {title}
                 </NavLinkSearchMovie>
               </SearchMovieListItem>
